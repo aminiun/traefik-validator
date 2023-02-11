@@ -1,11 +1,9 @@
-#! /home/amin/PycharmProjects/traefik-validator/venv/bin/python3
-
 import argparse
 
-from utils import Validator
+from traefik_validator.utils import Validator
 
 
-if __name__ == "__main__":
+def validate_traefik():
     parser = argparse.ArgumentParser(prog="validate_traefik", description='Validate traefik config file.')
     parser.add_argument('-s', '--static-config', type=argparse.FileType('r'), help='The static file path')
     parser.add_argument('-d', '--dynamic-config', type=argparse.FileType('r'), help='The dynamic file path')

@@ -3,8 +3,8 @@ from unittest.mock import MagicMock, call
 import pytest
 from jsonschema.exceptions import ValidationError
 
-import settings
-from utils import SchemaDownloader, Validator
+from traefik_validator import settings
+from traefik_validator.utils import SchemaDownloader, Validator
 
 
 class TestValidator:
@@ -49,14 +49,14 @@ class TestValidator:
                 }
             }
         }
-        mocker.patch("utils.SchemaDownloader.download_from_url", return_value=mock_schema)
+        mocker.patch("traefik_validator.utils.SchemaDownloader.download_from_url", return_value=mock_schema)
 
     @pytest.fixture(autouse=True)
     def mock_load_yaml(self, mocker):
         mock_yaml = {
             "not_test": 2
         }
-        mocker.patch("utils.Validator.load_yaml", return_value=mock_yaml)
+        mocker.patch("traefik_validator.utils.Validator.load_yaml", return_value=mock_yaml)
 
     def test_validator_without_any_files_raise_value_error(self):
         with pytest.raises(ValueError):
@@ -104,7 +104,7 @@ class TestValidator:
                 }
             }
         }
-        mocker.patch("utils.Validator.load_yaml", return_value=mock_yaml)
+        mocker.patch("traefik_validator.utils.Validator.load_yaml", return_value=mock_yaml)
         validator = Validator(dynamic_conf_file=MagicMock())
         with pytest.raises(ValidationError):
             validator.validate()
@@ -121,7 +121,7 @@ class TestValidator:
                 }
             }
         }
-        mocker.patch("utils.Validator.load_yaml", return_value=mock_yaml)
+        mocker.patch("traefik_validator.utils.Validator.load_yaml", return_value=mock_yaml)
         validator = Validator(dynamic_conf_file=MagicMock())
         res = validator.validate()
         assert res is None

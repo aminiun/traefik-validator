@@ -6,7 +6,7 @@ from typing import Optional, NoReturn
 import jsonschema
 import yaml
 
-import settings
+from traefik_validator import settings
 
 
 class SchemaDownloader:
