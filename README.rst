@@ -13,7 +13,7 @@ Install the package:
 
 .. code:: bash
 
-    pip3 install django-zeromigrations
+    pip3 install traefik-validator
 
 --------------
 
