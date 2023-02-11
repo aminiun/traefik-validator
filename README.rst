@@ -9,42 +9,42 @@ Traefik dynamic config schema is from: https://json.schemastore.org/traefik-v2-f
 
 Installation
 ------------
-First install the package:
+Install the package:
 
 .. code:: bash
 
     pip3 install django-zeromigrations
-
-Then add it to your ``INSTALLED_APPS``:
-
-.. code:: python
-
-    INSTALLED_APPS = [
-        ...
-        "zero_migrations"
-    ]
 
 --------------
 
 Usage
 -----
 
-First, run the command:
+Run the command:
 
 .. code::
 
-    python manage.py zeromigrations
+    validate_traefik -h
+    
+    >>> usage: validate_traefik [-h] [-s STATIC_CONFIG] [-d DYNAMIC_CONFIG]
 
-    I suggest to make a backups from both your migrations and django_migrations table (just in case).
-    1- make backup
-    2- restore last backup
-    3- just proceed
+    Validate traefik config file.
 
-If you choose ``1- make backup``, it would make a backup then zero
-migrations.
+    optional arguments:
+    -h, --help            show this help message and exit
+    -s STATIC_CONFIG, --static-config STATIC_CONFIG     The static file path
+    -d DYNAMIC_CONFIG, --dynamic-config DYNAMIC_CONFIG      The dynamic file path
 
-If you choose ``2- restore last backup``, it tries to restore the latest
-backup that can be found. If not backup found, it would raise an error.
+For validating static config file:
 
-If you choose ``3- just proceed``, it assumes that you already have your
-own backup and start setting migrations zero.
+.. code::
+
+    validate_traefik -s <PATH_TO_YOUR_FILE>
+
+For validating dynamic config file:
+
+.. code::
+
+    validate_traefik -d <PATH_TO_YOUR_FILE>
+
+**Note that you can use both options at the same command.**
