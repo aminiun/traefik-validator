@@ -40,7 +40,11 @@ class Validator:
     Validating user yaml file with traefik schema.
     User should at least pass either a dynamic config file or a static config file.
     """
-    def __init__(self, static_conf_file: Optional[TextIOWrapper], dynamic_conf_file: Optional[TextIOWrapper]):
+    def __init__(
+            self,
+            static_conf_file: Optional[TextIOWrapper] = None,
+            dynamic_conf_file: Optional[TextIOWrapper] = None
+    ):
         if not any([static_conf_file, dynamic_conf_file]):
             raise ValueError("Use should pass either static config file or dynamic config file")
 
